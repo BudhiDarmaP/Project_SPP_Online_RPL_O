@@ -4,7 +4,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="model.*"%>
 <%@page import="controller.*"%>
-<%
+<%--
             SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd-HH-mm");
                 Date date1 = null; 
                 Date date2 = null;
@@ -20,10 +20,8 @@
                 MengirimPemberitahuan p = new MengirimPemberitahuan();
                 MembuatTagihan t = new MembuatTagihan();
                // time1.schedule(p, date1);
-               // time2.schedule(t, date2);
-
-		
-%>
+               // time2.schedule(t, date2);		
+--%>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -50,8 +48,8 @@
 									<div id="menu">
 										<ul>
 											<li><a href="index.jsp">Home</a></li>
-											<li><a href="siswa.jsp">Siswa</a></li>
-											<li><a href="bank.jsp">Bank</a></li>
+											<li><a href="LihatStatus.jsp">Lihat Status</a></li>
+											<li><a href="Admin.jsp">Admin</a></li>
 										</ul>
 									</div>
 								</li>
@@ -76,13 +74,13 @@
 								<p>Masuk Sebagai:</p>
 							</header>
 							<ul class="features">
-								<li class="icon fa-graduation-cap">
-									<h3>Siswa</h3>
-									<a href="siswa.jsp" class="button fit">Siswa</a>
+								<li class="icon fa-search">
+									<h3>Lihat Status</h3>
+									<a href="LihatStatus.jsp" class="button fit">Lihat Status</a>
 								</li>
-								<li class="icon fa-bank">
-									<h3>Bank</h3>
-									<a href="bank.jsp" class="button fit">Bank</a>
+								<li class="icon fa-sign-in">
+									<h3>Admin</h3>
+									<a href="Admin.jsp" class="button fit">Admin</a>
 								</li>
 							</ul>
 						</div>
