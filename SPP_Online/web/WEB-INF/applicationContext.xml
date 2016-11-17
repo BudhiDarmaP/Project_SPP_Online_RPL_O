@@ -22,4 +22,5 @@
 
     <!-- ADD PERSISTENCE SUPPORT HERE (jpa, hibernate, etc) -->
 
+    <bean id="bank" class="model.Bank"/>
 </beans>

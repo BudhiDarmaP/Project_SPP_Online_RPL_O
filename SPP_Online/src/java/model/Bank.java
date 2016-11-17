@@ -9,20 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
- * @author Michael Donny Kusuma
+ * @author budhidarmap
  */
-public class Siswa {
-    @Autowired private String nis;
+public class Bank {
     @Autowired private String nama;
     @Autowired private String email;
-
-    public String getNis() {
-        return nis;
-    }
-
-    public void setNis(String nis) {
-        this.nis = nis;
-    }
 
     public String getNama() {
         return nama;
@@ -39,5 +30,4 @@ public class Siswa {
     public void setEmail(String email) {
         this.email = email;
     }
-    
 }
