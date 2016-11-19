@@ -155,6 +155,49 @@ public class DatabaseManager {
    return s;
    }
     
+    public Tagihan[] getListTagihan(String nis, String tanggal){
+       Connection conn = null;
+       Statement st = null;
+       ResultSet rs = null;
+       conn = this.getConnection();
+       Tagihan tg[] = null;
+       try{
+           st = conn.createStatement();
+           rs = st.executeQuery("SELECT COUNT (*) "
+                   + "TOTAL FROM RPL_TAGIHAN WHERE NIS = '"+nis+"' AND BULAN_TAGIHANTO_DATE("
+                   + "'"+tanggal+"' , 'MM-YY'");
+           rs.next();
+           tg = new Tagihan[rs.getInt(1)];
+           rs = st.executeQuery("SELECT ID, NIS, JENIS_PEMBAYARAN, PEMBAYARAN_TERAKHIR, BULAN_TAGIHAN, JUMLAH_PEMBAYARAN, STATUS"
+                   + "FROM RPL_TAGIHAN WHERE NIS='"+nis+"'");
+           int index =0;
+           while(rs.next()){
+               tg[index] = new Tagihan();
+               tg[index].setId_tagihan(rs.getString(1));
+               tg[index].setNis(rs.getString(2));
+               tg[index].setJenis_pembayaran(rs.getString(3));
+               tg[index].setPembayaran_terakhir(rs.getString(4));
+               tg[index].setJumlah_pembayaran(rs.getDouble(5));
+               tg[index].setStatus_pembayaran(rs.getBoolean(6));
+               index++;               
+           }
+       }
+       catch (SQLException ex){
+           System.out.println(ex.getMessage());       
+       }
+       finally{
+           try{
+               rs.close();
+               st.close();
+               conn.close();
+           }
+           catch (SQLException ex){
+               System.out.println(ex.getMessage());
+           }
+       }
+   return tg;
+   }
+    
     public Pembayaran[] getListPembayaran(String tanggal){
        Connection conn = null;
        Statement st = null;
@@ -206,13 +249,14 @@ public class DatabaseManager {
        PreparedStatement ps = null;       
        conn = this.getConnection();  
        try{
-               ps = conn.prepareCall("INSERT INTO RPL_PEMBAYARAN VALUES(?,?,?,?,?,TO_DATE(?, 'DD-MM-YYYY'))");
+               ps = conn.prepareCall("INSERT INTO RPL_PEMBAYARAN VALUES(?,?,?,?,?,?,TO_DATE(?, 'DD-MM-YYYY'))");
                ps.setString(1, p.getID());
                ps.setString(2, p.getNis());
                ps.setString(3, p.getNoRekening());
                ps.setDouble(4, p.getJumlahPembayaran());
                ps.setString(5, p.getJenisPembayaran());
-               ps.setString(6, p.getWaktuPembayaran());
+               ps.setString(6, p.getStatus());
+               ps.setString(7, p.getWaktuPembayaran());
                ps.executeUpdate();
                conn.commit();
                text = "Data sudah ditambahkan";

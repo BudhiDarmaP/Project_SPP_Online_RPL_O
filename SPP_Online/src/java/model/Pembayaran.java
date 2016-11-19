@@ -12,6 +12,15 @@ public class Pembayaran {
     private String beritaAcara;
     private String nis;
     private String jenisPembayaran;
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getWaktuPembayaran() {
         return waktuPembayaran;
@@ -68,6 +77,4 @@ public class Pembayaran {
     public void setID(String ID) {
         this.ID = ID;
     }
-
-
 }

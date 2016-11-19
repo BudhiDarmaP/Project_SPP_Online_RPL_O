@@ -14,7 +14,16 @@ public class Tagihan {
     private String nis;
     private String jenis_pembayaran;
     private String pembayaran_terakhir;
+    private String bulan_tagihan;
     private boolean status_pembayaran;
+
+    public boolean isStatus_pembayaran() {
+        return status_pembayaran;
+    }
+
+    public void setStatus_pembayaran(boolean status_pembayaran) {
+        this.status_pembayaran = status_pembayaran;
+    }
     private double jumlah_pembayaran;
 
     public String getId_tagihan() {
@@ -41,6 +50,15 @@ public class Tagihan {
         this.jenis_pembayaran = jenis_pembayaran;
     }
 
+
+    public String getBulan_tagihan() {
+        return bulan_tagihan;
+    }
+
+    public void setBulan_tagihan(String bulan_tagihan) {
+        this.bulan_tagihan = bulan_tagihan;
+    }
+    
     public String getPembayaran_terakhir() {
         return pembayaran_terakhir;
     }
@@ -49,21 +67,11 @@ public class Tagihan {
         this.pembayaran_terakhir = pembayaran_terakhir;
     }
 
-    public boolean isStatus_pembayaran() {
-        return status_pembayaran;
-    }
-
-    public void setStatus_pembayaran(boolean status_pembayaran) {
-        this.status_pembayaran = status_pembayaran;
-    }
-
     public double getJumlah_pembayaran() {
         return jumlah_pembayaran;
     }
 
     public void setJumlah_pembayaran(double jumlah_pembayaran) {
         this.jumlah_pembayaran = jumlah_pembayaran;
-    }
-
-    
+    }  
 }
