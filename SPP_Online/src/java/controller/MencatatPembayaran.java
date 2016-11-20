@@ -111,7 +111,6 @@ public class MencatatPembayaran extends HttpServlet {
                 p.setNoRekening(dataSet[1]);
                 p.setJumlahPembayaran(Double.parseDouble(dataSet[2]));
                 p.setNis(dataSet[3].substring(0, 5));
-                p.setJenisPembayaran(dataSet[3].substring(6));
 
                 String tanggal = String.valueOf(timeStamp2.substring(0,5));
                 Tagihan [] t = db.getListTagihan(p.getNis(), tanggal);

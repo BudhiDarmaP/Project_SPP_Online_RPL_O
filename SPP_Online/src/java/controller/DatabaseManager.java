@@ -168,15 +168,15 @@ public class DatabaseManager {
                    + "'"+tanggal+"' , 'MM-YY'");
            rs.next();
            tg = new Tagihan[rs.getInt(1)];
-           rs = st.executeQuery("SELECT ID, NIS, JENIS_PEMBAYARAN, PEMBAYARAN_TERAKHIR, BULAN_TAGIHAN, JUMLAH_PEMBAYARAN, STATUS"
+           rs = st.executeQuery("SELECT ID, NIS, PEMBAYARAN_TERAKHIR, BULAN_TAGIHAN, JUMLAH_PEMBAYARAN, STATUS_PEMBAYARAN"
                    + "FROM RPL_TAGIHAN WHERE NIS='"+nis+"'");
            int index =0;
            while(rs.next()){
                tg[index] = new Tagihan();
                tg[index].setId_tagihan(rs.getString(1));
                tg[index].setNis(rs.getString(2));
-               tg[index].setJenis_pembayaran(rs.getString(3));
-               tg[index].setPembayaran_terakhir(rs.getString(4));
+               tg[index].setPembayaran_terakhir(rs.getString(3));
+               tg[index].setBulan_tagihan(rs.getInt(4));
                tg[index].setJumlah_pembayaran(rs.getDouble(5));
                tg[index].setStatus_pembayaran(rs.getBoolean(6));
                index++;               
