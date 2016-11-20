@@ -13,7 +13,7 @@ public class Tagihan {
     private String id_tagihan;
     private String nis;
     private String pembayaran_terakhir;
-    private String bulan_tagihan;
+    private int bulan_tagihan;
     private boolean status_pembayaran;
     private double jumlah_pembayaran;
 
@@ -41,11 +41,11 @@ public class Tagihan {
         this.nis = nis;
     }
 
-    public String getBulan_tagihan() {
+    public int getBulan_tagihan() {
         return bulan_tagihan;
     }
 
-    public void setBulan_tagihan(String bulan_tagihan) {
+    public void setBulan_tagihan(int bulan_tagihan) {
         this.bulan_tagihan = bulan_tagihan;
     }
     

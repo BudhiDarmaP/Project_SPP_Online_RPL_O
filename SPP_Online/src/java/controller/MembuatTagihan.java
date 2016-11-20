@@ -7,12 +7,18 @@ package controller;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import model.Siswa;
 import model.Tagihan;
 
@@ -25,10 +31,11 @@ import model.Tagihan;
  * Digit 4 - 5 = tanggal tagihan
  * Digit 6 - 10 = nis
  */
-public class MembuatTagihan extends TimerTask {
-
-    @Override
-    public void run() {
+@WebServlet(name = "MembuatTagihan", urlPatterns = {"/MembuatTagihan"})
+public class MembuatTagihan extends HttpServlet {
+    
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         DatabaseManager db = new DatabaseManager();
         String timeStamp = new SimpleDateFormat("yyMM").format(Calendar.getInstance().getTime());
         PrintWriter pw;
@@ -42,10 +49,10 @@ public class MembuatTagihan extends TimerTask {
             t[i] = new Tagihan();
             t[i].setId_tagihan("1"+timeStamp+s[i].getNis());
             t[i].setNis(s[i].getNis());
-            t[i].setJenis_pembayaran("SPP");
-            t[i].setPembayaran_terakhir("20-"+timeStamp.substring(2)+"-20"+timeStamp.substring(0,2));
+            t[i].setBulan_tagihan(Integer.parseInt(request.getParameter("bulan")));
+//            t[i].setPembayaran_terakhir("20-"+timeStamp.substring(2)+"-20"+timeStamp.substring(0,2));
             t[i].setStatus_pembayaran(false);
-            t[i].setJumlah_pembayaran(500_000);
+            t[i].setJumlah_pembayaran(Double.parseDouble(request.getParameter("tagihan")));
             db.simpanTagihan(t[i]);
         }
         
@@ -60,7 +67,7 @@ public class MembuatTagihan extends TimerTask {
         for (int i = 0; i < t.length; i++) {
             sb.append(t[i].getNis());
             sb.append(',');
-            sb.append(t[i].getJenis_pembayaran());
+            sb.append(t[i].getBulan_tagihan());
             sb.append(',');
             sb.append(t[i].getJumlah_pembayaran());
             sb.append("\r\n");
@@ -76,6 +83,7 @@ public class MembuatTagihan extends TimerTask {
         } catch (FileNotFoundException ex) {
                 
         }
+        
     }
     
 }
