@@ -16,6 +16,7 @@ public class Tagihan {
     private String pembayaran_terakhir;
     private String bulan_tagihan;
     private boolean status_pembayaran;
+    private double jumlah_pembayaran;
 
     public boolean isStatus_pembayaran() {
         return status_pembayaran;
@@ -24,7 +25,6 @@ public class Tagihan {
     public void setStatus_pembayaran(boolean status_pembayaran) {
         this.status_pembayaran = status_pembayaran;
     }
-    private double jumlah_pembayaran;
 
     public String getId_tagihan() {
         return id_tagihan;
