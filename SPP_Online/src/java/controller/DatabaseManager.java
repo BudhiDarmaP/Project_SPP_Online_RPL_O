@@ -63,7 +63,7 @@ public class DatabaseManager {
                 ps = conn.prepareCall("INSERT INTO RPL_TAGIHAN VALUES(?,?,?,TO_DATE(?, 'DD-MM-YYYY'),?,?)");
                 ps.setString(1, t.getId_tagihan());
                 ps.setString(2, t.getNis());
-                ps.setString(3, t.getJenis_pembayaran());
+                ps.setInt(3, t.getBulan_tagihan());
                 ps.setString(4, t.getPembayaran_terakhir());
                 ps.setInt(5, status);
                 ps.setDouble(6, t.getJumlah_pembayaran());
