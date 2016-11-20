@@ -274,7 +274,7 @@ public class DatabaseManager {
        }
     }
     
-    public String verifikasiSukses(String nis, String jenisPembayaran){
+    public String verifikasiSukses(String nis, int bulan_tagihan){
        String text = null;
        Connection conn = null;
        PreparedStatement ps = null; 
@@ -282,10 +282,10 @@ public class DatabaseManager {
        ResultSet rs = null;
        conn = this.getConnection();
        try{
-           ps = conn.prepareCall("UPDATE RPL_TAGIHAN SET STATUS_PEMBAYARAN=? WHERE NIS=? AND JENIS_PEMBAYARAN=? ");
+           ps = conn.prepareCall("UPDATE RPL_TAGIHAN SET STATUS_PEMBAYARAN=? WHERE NIS=? AND BULAN_TAGIHAN=?");
            ps.setInt(1, 1);
            ps.setString(2, nis);
-           ps.setString(3, jenisPembayaran);
+           ps.setInt(3, bulan_tagihan);
            ps.executeUpdate();
            conn.commit();
        }

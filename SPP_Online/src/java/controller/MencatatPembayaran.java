@@ -118,7 +118,7 @@ public class MencatatPembayaran extends HttpServlet {
                             && t[i].getJumlah_pembayaran()== p.getJumlahPembayaran() 
                             && t[i].getBulan_tagihan() == Integer.parseInt(p.getWaktuPembayaran().substring(3,5))// bandingkan jumlah pembayaran
                             ) {// bandingkan jenis pembayaran
-                        //update status bayar tagihan menjadi sudah bayar
+                        db.verifikasiSukses(p.getNis(), Integer.parseInt(p.getWaktuPembayaran().substring(3,5)));//update status bayar tagihan menjadi sudah bayar
                         db.simpanPembayaran(p);
                         counter++;
                         this.tampil(request, response, "Pembayaran Terverifikasi");
