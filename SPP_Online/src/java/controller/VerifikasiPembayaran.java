@@ -78,7 +78,6 @@ public class VerifikasiPembayaran extends HttpServlet {
                     ) 
             {
                  //update status bayar tagihan menjadi sudah bayar
-                db.verifikasiSukses(nis, p[i].getJenisPembayaran().replaceAll("\\s+",""));
                 this.tampil(request, response, "Pembayaran Terverifikasi");
             }
         }
