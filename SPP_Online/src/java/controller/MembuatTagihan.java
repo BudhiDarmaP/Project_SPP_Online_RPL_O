@@ -60,7 +60,7 @@ public class MembuatTagihan extends HttpServlet {
         StringBuilder sb = new StringBuilder();
         sb.append("NIS");
         sb.append(',');
-        sb.append("JENIS PEMBAYARAN");
+        sb.append("BULAN TAGIHAN");
         sb.append(',');
         sb.append("JUMLAH PEMBAYARAN");
         sb.append("\r\n");
@@ -75,7 +75,7 @@ public class MembuatTagihan extends HttpServlet {
         
         // Menyimpan file ke daftar_tagihan.csv
         try {
-            pw = new PrintWriter(new File("E:\\PROJECT\\SistemPembayaranUangSekolah\\web\\file\\daftar_tagihan.csv"));               
+            pw = new PrintWriter(new File("c:/Apache/file/daftar_tagihan.csv"));               
             pw.write(sb.toString());
             pw.close();
             System.out.println("done!");  
