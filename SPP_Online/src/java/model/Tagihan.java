@@ -12,7 +12,6 @@ package model;
 public class Tagihan {
     private String id_tagihan;
     private String nis;
-    private String jenis_pembayaran;
     private String pembayaran_terakhir;
     private String bulan_tagihan;
     private boolean status_pembayaran;
@@ -41,15 +40,6 @@ public class Tagihan {
     public void setNis(String nis) {
         this.nis = nis;
     }
-
-    public String getJenis_pembayaran() {
-        return jenis_pembayaran;
-    }
-
-    public void setJenis_pembayaran(String jenis_pembayaran) {
-        this.jenis_pembayaran = jenis_pembayaran;
-    }
-
 
     public String getBulan_tagihan() {
         return bulan_tagihan;
