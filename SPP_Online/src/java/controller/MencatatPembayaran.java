@@ -111,12 +111,12 @@ public class MencatatPembayaran extends HttpServlet {
                 p.setNoRekening(dataSet[1]);
                 p.setJumlahPembayaran(Double.parseDouble(dataSet[2]));
                 p.setNis(dataSet[3].substring(0, 5));
-
-                String tanggal = String.valueOf(timeStamp2.substring(0,5));
-                Tagihan [] t = db.getListTagihan(p.getNis(), tanggal);
+                
+                Tagihan [] t = db.getListTagihan(p.getNis(), p.getWaktuPembayaran().substring(3,5));
                 for (int i = 0; i < t.length; i++) {
                     if (t[i].getNis().equals(p.getNis())
-                            && t[i].getJumlah_pembayaran()== p.getJumlahPembayaran() // bandingkan jumlah pembayaran
+                            && t[i].getJumlah_pembayaran()== p.getJumlahPembayaran() 
+                            && t[i].getBulan_tagihan() == Integer.parseInt(p.getWaktuPembayaran().substring(3,5))// bandingkan jumlah pembayaran
                             ) {// bandingkan jenis pembayaran
                         //update status bayar tagihan menjadi sudah bayar
                         db.simpanPembayaran(p);
