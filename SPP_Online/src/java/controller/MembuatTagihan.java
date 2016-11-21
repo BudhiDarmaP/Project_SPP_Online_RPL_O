@@ -14,6 +14,7 @@ import java.util.Calendar;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -83,7 +84,22 @@ public class MembuatTagihan extends HttpServlet {
         } catch (FileNotFoundException ex) {
                 
         }
+        this.tampil(request, response, "SUKSES");
         
+    }
+    
+    public void returnError(HttpServletRequest request, HttpServletResponse response, Exception e) throws ServletException, IOException {
+        RequestDispatcher dispatcher;
+        request.setAttribute("error", e.getMessage());
+        dispatcher = request.getRequestDispatcher("error.jsp");
+        dispatcher.forward(request, response);
+    }
+    
+    public void tampil(HttpServletRequest request, HttpServletResponse response, String information) throws ServletException, IOException {
+        RequestDispatcher dispatcher;
+        request.setAttribute("info", information);
+        dispatcher = request.getRequestDispatcher("info.jsp");
+        dispatcher.forward(request, response);
     }
     
 }

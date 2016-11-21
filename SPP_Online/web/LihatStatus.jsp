@@ -42,7 +42,7 @@
 
 								<h3>Masukkan NIS</h3>
 								
-									<form action="" method="post">
+									<form action="LihatStatus" method="post">
 										<div class="row uniform">
 											<div class="6u 12u$(xsmall)">
 												<input type="text" name="nis" placeholder="NIS" />

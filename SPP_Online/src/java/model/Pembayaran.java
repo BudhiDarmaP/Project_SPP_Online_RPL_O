@@ -13,6 +13,15 @@ public class Pembayaran {
     private String nis;
     private String jenisPembayaran;
     private String status;
+    private int bulanTagihan;
+
+    public int getBulanTagihan() {
+        return bulanTagihan;
+    }
+
+    public void setBulanTagihan(int bulanTagihan) {
+        this.bulanTagihan = bulanTagihan;
+    }
 
     public String getStatus() {
         return status;

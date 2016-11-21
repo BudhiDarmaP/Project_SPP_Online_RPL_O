@@ -90,7 +90,7 @@ public class MencatatPembayaran extends HttpServlet {
             Exception e = new Exception("no file uploaded");
             returnError(request, response, e);
         }
-
+        System.out.println("sukses1");
         //Membaca file dari dalam sistem
         String csvFile = filePath + "DataPembayaran_" + timeStamp + ".csv";
         BufferedReader br = null;
@@ -98,35 +98,44 @@ public class MencatatPembayaran extends HttpServlet {
         String cvsSplitBy = ",";
 
         try {
-
+            System.out.println("0");
             br = new BufferedReader(new FileReader(csvFile));
             int counter = 1;
             while ((line = br.readLine()) != null) {
 
                 // use comma as separator
                 String[] dataSet = line.split(cvsSplitBy);
-
                 p.setID(timeStamp2 + "_" + counter);
                 p.setWaktuPembayaran(dataSet[0]);
                 p.setNoRekening(dataSet[1]);
                 p.setJumlahPembayaran(Double.parseDouble(dataSet[2]));
                 p.setNis(dataSet[3].substring(0, 5));
-                
-                Tagihan [] t = db.getListTagihan(p.getNis(), p.getWaktuPembayaran().substring(3,5));
+                p.setBulanTagihan(Integer.parseInt(dataSet[3].substring(6)));
+                //Membandingkan nis, jumlah, bulan pembayaran ke tagihan
+                Tagihan [] t = db.getListTagihan(p.getNis());
+                System.out.println("P = "+p.getID());
                 for (int i = 0; i < t.length; i++) {
+                    System.out.println("T = "+p.getNis());
                     if (t[i].getNis().equals(p.getNis())
                             && t[i].getJumlah_pembayaran()== p.getJumlahPembayaran() 
-                            && t[i].getBulan_tagihan() == Integer.parseInt(p.getWaktuPembayaran().substring(3,5))// bandingkan jumlah pembayaran
-                            ) {// bandingkan jenis pembayaran
-                        db.verifikasiSukses(p.getNis(), Integer.parseInt(p.getWaktuPembayaran().substring(3,5)));//update status bayar tagihan menjadi sudah bayar
+                            && t[i].getBulan_tagihan() == p.getBulanTagihan())// bandingkan jumlah pembayaran
+                        {
                         db.simpanPembayaran(p);
-                        counter++;
-                        this.tampil(request, response, "Pembayaran Terverifikasi");
+                        db.verifikasiSukses(p.getNis(), p.getBulanTagihan());//update status bayar tagihan menjadi sudah bayar
+                        
                     }
                 }
-            }
-            this.tampil(request, response, "Data Tersimpan");
+                counter++;
+                //Masukan data pembayaran ke database
+                
+                //update status pembayaran tagihan
 
+                
+            }
+            
+                        
+            this.tampil(request, response, "Data Terverifikasi");
+            System.out.println("sukses2");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
