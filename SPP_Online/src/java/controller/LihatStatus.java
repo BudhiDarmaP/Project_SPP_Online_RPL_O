@@ -35,6 +35,36 @@ public class LihatStatus extends HttpServlet {
         System.out.println(tg.isStatus_pembayaran());
         if (tg.isStatus_pembayaran()) {
             hasil = "Sudah bayar";
+//            "<style>
+//table {
+//    font-family: arial, sans-serif;
+//    border-collapse: collapse;
+//    width: 100%;
+//}
+//
+//td, th {
+//    border: 1px solid #dddddd;
+//    text-align: left;
+//    padding: 8px;
+//}
+//
+//tr:nth-child(even) {
+//    background-color: #dddddd;
+//}
+//</style>
+//<table>
+//  <tr>
+//    <th>NIS</th>
+//    <th>BULAN TAGIHAN</th>
+//    <th>WAKTU PEMBAYARAN</th>
+//    <th>STATUS PEMBAYARAN</th>
+//  </tr>
+//  <tr>
+//    <td></td>
+//    <td></td>
+//    <td></td>
+//  </tr>
+//</table>"
 //            for (int i = 0; i < t.length; i++) {
 //            daftar="<table></table>";
 //        }
@@ -46,7 +76,7 @@ public class LihatStatus extends HttpServlet {
 
     public void daftar(String nis) {
         DatabaseManager db = new DatabaseManager();
-        
+
     }
 
     public void returnError(HttpServletRequest request, HttpServletResponse response, Exception e) throws ServletException, IOException {
