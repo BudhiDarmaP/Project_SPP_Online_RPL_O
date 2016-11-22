@@ -88,7 +88,7 @@ public class Kirim extends HttpServlet {
 
                 transport.connect();
                 Transport.send(message);
-                pesan = "Pesan berhasil dikirim ke " + String.valueOf(s.length) +" orangt";
+                pesan = "Pesan berhasil dikirim ke " + String.valueOf(s.length) +" orang";
                 transport.close();
             } catch (Exception e) {
             }
