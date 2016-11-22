@@ -29,9 +29,9 @@
                             <a href="#menu" class="menuToggle"><span>Menu</span></a>
                             <div id="menu">
                                 <ul>
-                                    <li><a href="Admin.jsp">Home</a></li>
-                                    <li><a href="BuatTagihan.jsp">Buat Tagihan</a></li>
+                                    <li><a href="index.jsp">Home</a></li>
                                     <li><a href="LihatStatus.jsp">Lihat Status</a></li>
+                                    <li><a href="Admin.jsp"></a>Admin</li>
                                 </ul>
                             </div>
                         </li>

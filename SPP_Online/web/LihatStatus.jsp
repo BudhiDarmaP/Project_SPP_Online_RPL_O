@@ -24,7 +24,7 @@
 										<ul>
 											<li><a href="index.jsp">Home</a></li>
 											<li><a href="LihatStatus.jsp">Lihat Status</a></li>
-											<li><a href="admin.jsp"></a>Admin</li>
+											<li><a href="Admin.jsp"></a>Admin</li>
 										</ul>
 									</div>
 								</li>

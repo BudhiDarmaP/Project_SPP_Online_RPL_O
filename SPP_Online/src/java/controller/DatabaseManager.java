@@ -21,16 +21,17 @@ import model.Tagihan;
 public class DatabaseManager {
 
     public Connection getConnection() {
-        String host = "172.23.9.185"; //172.23.9.185
-        String port = "1521";
-        String db = "orcl"; //orcl
-        String usr = "MHS145314059"; //MHS145314059
-        String pwd = "ADSHPP29"; //ADSHPP29
-//        String host = "localhost"; //172.23.9.185
+//        String host = "172.23.9.185"; //172.23.9.185
 //        String port = "1521";
-//        String db = "XE"; //orcl
-//        String usr = "sia"; //MHS145314059
-//        String pwd = "sia"; //ADSHPP29
+//        String db = "orcl"; //orcl
+//        String usr = "MHS145314059"; //MHS145314059
+//        String pwd = "ADSHPP29"; //ADSHPP29
+
+        String host = "localhost"; //local
+        String port = "1521";
+        String db = "XE"; 
+        String usr = "sia";
+        String pwd = "sia";
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
         } catch (ClassNotFoundException ex) {
