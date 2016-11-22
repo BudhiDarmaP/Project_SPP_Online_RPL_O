@@ -113,9 +113,7 @@ public class MencatatPembayaran extends HttpServlet {
                 p.setBulanTagihan(Integer.parseInt(dataSet[3].substring(6)));
                 //Membandingkan nis, jumlah, bulan pembayaran ke tagihan
                 Tagihan [] t = db.getListTagihan(p.getNis());
-                System.out.println("P = "+p.getID());
                 for (int i = 0; i < t.length; i++) {
-                    System.out.println("T = "+p.getNis());
                     if (t[i].getNis().equals(p.getNis())
                             && t[i].getJumlah_pembayaran()== p.getJumlahPembayaran() 
                             && t[i].getBulan_tagihan() == p.getBulanTagihan())// bandingkan jumlah pembayaran

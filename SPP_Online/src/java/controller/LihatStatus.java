@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Pembayaran;
 import model.Tagihan;
 
 /**
@@ -21,22 +22,33 @@ import model.Tagihan;
  */
 @WebServlet(name = "LihatStatus", urlPatterns = {"/LihatStatus"})
 public class LihatStatus extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         DatabaseManager db = new DatabaseManager();
         Tagihan tg = db.getTagihan(request.getParameter("nis"));
+        Pembayaran[] pb = db.getPembayaran(request.getParameter("nis"));
+        Tagihan[] t = db.getListTagihan(request.getParameter("nis"));
         String hasil;
+        String daftar = null;
         System.out.println(tg.isStatus_pembayaran());
         if (tg.isStatus_pembayaran()) {
             hasil = "Sudah bayar";
-        }
-        else{
+//            for (int i = 0; i < t.length; i++) {
+//            daftar="<table></table>";
+//        }
+        } else {
             hasil = "Belum bayar";
         }
         this.tampil(request, response, hasil);
     }
-    
+
+    public void daftar(String nis) {
+        DatabaseManager db = new DatabaseManager();
+        
+    }
+
     public void returnError(HttpServletRequest request, HttpServletResponse response, Exception e) throws ServletException, IOException {
         RequestDispatcher dispatcher;
         request.setAttribute("error", e.getMessage());
