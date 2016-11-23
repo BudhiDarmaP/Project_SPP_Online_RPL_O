@@ -24,7 +24,7 @@
 										<ul>
 											<li><a href="index.jsp">Home</a></li>
 											<li><a href="LihatStatus.jsp">Lihat Status</a></li>
-											<li><a href="Admin.jsp"></a>Admin</li>
+											<li><a href="Admin.jsp">Admin</a></li>
 										</ul>
 									</div>
 								</li>
@@ -42,7 +42,7 @@
 
 								<h3>Masukkan NIS</h3>
 								
-									<form action="LihatStatus" method="post">
+									<form action="Status" method="post">
 										<div class="row uniform">
 											<div class="6u 12u$(xsmall)">
 												<input type="text" name="nis" placeholder="NIS" />

@@ -31,7 +31,7 @@
 										<ul>
 											<li><a href="index.jsp">Home</a></li>
 											<li><a href="LihatStatus.jsp">Lihat Status</a></li>
-											<li><a href="Admin.jsp"></a>Admin</li>
+											<li><a href="Admin.jsp">Admin</a></li>
 										</ul>
 									</div>
 								</li>
@@ -44,7 +44,7 @@
 						<section class="wrapper style5">
 							<div class="inner">
 
-                                                            <h2>Information:</h2>
+                                                            <h2>Informasi:</h2>
                                                             <h3><%= request.getAttribute("info") %>!</h3>
 											
 							</div>

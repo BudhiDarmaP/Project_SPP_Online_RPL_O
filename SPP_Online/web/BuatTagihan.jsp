@@ -42,7 +42,7 @@
 
 								<h3>Masukkan Tagihan</h3>
 								
-									<form action="MembuatTagihan" method="post">
+									<form action="ControlTagihan" method="post">
 										<div class="row uniform">
 											<div class="6u 12u$(xsmall)">
                                                                                                 <select name="bulan" >

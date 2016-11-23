@@ -5,11 +5,19 @@
  */
 package model;
 
+import controller.DatabaseManager;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  *
  * @author Michael Donny Kusuma
  */
 public class Tagihan {
+
     private String id_tagihan;
     private String nis;
     private String pembayaran_terakhir;
@@ -48,7 +56,7 @@ public class Tagihan {
     public void setBulan_tagihan(int bulan_tagihan) {
         this.bulan_tagihan = bulan_tagihan;
     }
-    
+
     public String getPembayaran_terakhir() {
         return pembayaran_terakhir;
     }
@@ -63,5 +71,137 @@ public class Tagihan {
 
     public void setJumlah_pembayaran(double jumlah_pembayaran) {
         this.jumlah_pembayaran = jumlah_pembayaran;
-    }  
+    }
+
+    public static void simpanTagihan(Tagihan t) {
+        String text = null;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        conn = DatabaseManager.getDBConnection();
+        try {
+            int status = 0;
+            if (t.isStatus_pembayaran()) {
+                status = 1;
+            }
+            ps = conn.prepareCall("INSERT INTO RPL_TAGIHAN VALUES(?,?,?,TO_DATE(?, 'DD-MM-YYYY'),?,?)");
+            ps.setString(1, t.getId_tagihan());
+            ps.setString(2, t.getNis());
+            ps.setInt(3, t.getBulan_tagihan());
+            ps.setString(4, t.getPembayaran_terakhir());
+            ps.setInt(5, status);
+            ps.setDouble(6, t.getJumlah_pembayaran());
+
+            ps.executeUpdate();
+            conn.commit();
+            text = "Data berhasil ditambahkan di tabel tagihan";
+
+        } catch (SQLException ex) {
+        } finally {
+            try {
+                ps.close();
+                conn.close();
+            } catch (SQLException ex) {
+            }
+        }
+
+    }
+
+    public static Tagihan[] getListTagihan(String nis) {
+        Connection conn = null;
+        Statement st = null;
+        ResultSet rs = null;
+        conn = DatabaseManager.getDBConnection();
+        Tagihan tg[] = null;
+        try {
+            st = conn.createStatement();
+            rs = st.executeQuery("SELECT COUNT (*) "
+                    + "TOTAL FROM RPL_TAGIHAN WHERE (NIS = '" + nis + "'"
+                    + "AND STATUS_PEMBAYARAN=0)");
+            rs.next();
+            tg = new Tagihan[rs.getInt(1)];
+            rs = st.executeQuery("SELECT *"
+                    + "FROM RPL_TAGIHAN WHERE (NIS = '" + nis + "'"
+                    + "AND STATUS_PEMBAYARAN=0)");
+            int index = 0;
+            while (rs.next()) {
+                tg[index] = new Tagihan();
+                tg[index].setId_tagihan(rs.getString(1));
+                tg[index].setNis(rs.getString(2));
+                tg[index].setBulan_tagihan(rs.getInt(3));
+                tg[index].setPembayaran_terakhir(rs.getString(4));
+                tg[index].setStatus_pembayaran(rs.getBoolean(5));
+                tg[index].setJumlah_pembayaran(rs.getDouble(6));
+                index++;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            try {
+                rs.close();
+                st.close();
+                conn.close();
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        return tg;
+    }
+
+    public static Tagihan getTagihan(String nis) {
+        Connection conn = null;
+        Statement st = null;
+        ResultSet rs = null;
+        conn = DatabaseManager.getDBConnection();
+        Tagihan tg = new Tagihan();
+        try {
+            st = conn.createStatement();
+            rs = st.executeQuery("SELECT *"
+                    + "FROM RPL_TAGIHAN WHERE NIS = '" + nis + "'");
+            rs.next();
+            tg.setId_tagihan(rs.getString(1));
+            tg.setNis(rs.getString(2));
+            tg.setBulan_tagihan(rs.getInt(3));
+            tg.setPembayaran_terakhir(rs.getString(4));
+            tg.setStatus_pembayaran(rs.getBoolean(5));
+            tg.setJumlah_pembayaran(rs.getDouble(6));
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            try {
+                rs.close();
+                st.close();
+                conn.close();
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        return tg;
+    }
+
+    public static String verifikasiSukses(String nis, int bulan_tagihan) {
+        String text = null;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        Statement st = null;
+        ResultSet rs = null;
+        conn = DatabaseManager.getDBConnection();
+        try {
+            ps = conn.prepareCall("UPDATE RPL_TAGIHAN SET STATUS_PEMBAYARAN=? WHERE NIS=? AND BULAN_TAGIHAN=?");
+            ps.setInt(1, 1);
+            ps.setString(2, nis);
+            ps.setInt(3, bulan_tagihan);
+            ps.executeUpdate();
+            conn.commit();
+        } catch (SQLException ex) {
+
+        } finally {
+            try {
+                ps.close();
+                conn.close();
+            } catch (SQLException ex) {
+
+            }
+        }
+        return text;
+    }
 }

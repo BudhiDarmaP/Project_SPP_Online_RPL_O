@@ -29,8 +29,8 @@ import model.Tagihan;
  *
  * @author Alicia Destriani S
  */
-@WebServlet(name = "Kirim", urlPatterns = {"/Kirim"})
-public class Kirim extends HttpServlet {
+@WebServlet(name = "ControlKirim", urlPatterns = {"/ControlKirim"})
+public class ControlKirim extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -40,8 +40,8 @@ public class Kirim extends HttpServlet {
         String timeStamp = new SimpleDateFormat("YYMM").format(Calendar.getInstance().getTime());
 
         /* TODO output your page here. You may use following sample code. */
-        Siswa[] s = db.getListSiswa();
-        String email[] = db.getEmail();
+        Siswa[] s = Siswa.getListSiswa();
+        String email[] = Siswa.getListEmail();
         Tagihan tgh = new Tagihan();
         String pesan = null;
 
@@ -96,7 +96,7 @@ public class Kirim extends HttpServlet {
 //                out.println("<!DOCTYPE html>");
 //            out.println("<html>");
 //            out.println("<head>");
-//            out.println("<title>Servlet Kirim</title>");            
+//            out.println("<title>Servlet ControlKirim</title>");            
 //            out.println("</head>");
 //            out.println("<body>");
 //            out.println("<h1>Sukses</h1>");

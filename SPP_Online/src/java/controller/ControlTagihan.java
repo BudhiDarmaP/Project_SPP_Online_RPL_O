@@ -32,8 +32,8 @@ import model.Tagihan;
  * Digit 4 - 5 = tanggal tagihan
  * Digit 6 - 10 = nis
  */
-@WebServlet(name = "MembuatTagihan", urlPatterns = {"/MembuatTagihan"})
-public class MembuatTagihan extends HttpServlet {
+@WebServlet(name = "ControlTagihan", urlPatterns = {"/ControlTagihan"})
+public class ControlTagihan extends HttpServlet {
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -42,7 +42,7 @@ public class MembuatTagihan extends HttpServlet {
         PrintWriter pw;
         
         //Membaca daftar siswa dari database
-        Siswa[] s = db.getListSiswa();
+        Siswa[] s = Siswa.getListSiswa();
         
         //Membuat daftar tagihan
         Tagihan[] t = new Tagihan[s.length];
@@ -54,7 +54,7 @@ public class MembuatTagihan extends HttpServlet {
 //            t[i].setPembayaran_terakhir("20-"+timeStamp.substring(2)+"-20"+timeStamp.substring(0,2));
             t[i].setStatus_pembayaran(false);
             t[i].setJumlah_pembayaran(Double.parseDouble(request.getParameter("tagihan")));
-            db.simpanTagihan(t[i]);
+            Tagihan.simpanTagihan(t[i]);
         }
         
         //Menyimpan daftar tagihan ke file

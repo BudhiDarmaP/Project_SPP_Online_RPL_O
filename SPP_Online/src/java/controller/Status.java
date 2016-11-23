@@ -20,16 +20,16 @@ import model.Tagihan;
  *
  * @author budhidarmap
  */
-@WebServlet(name = "LihatStatus", urlPatterns = {"/LihatStatus"})
-public class LihatStatus extends HttpServlet {
+@WebServlet(name = "Status", urlPatterns = {"/Status"})
+public class Status extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         DatabaseManager db = new DatabaseManager();
-        Tagihan tg = db.getTagihan(request.getParameter("nis"));
-        Pembayaran[] pb = db.getPembayaran(request.getParameter("nis"));
-        Tagihan[] t = db.getListTagihan(request.getParameter("nis"));
+        Tagihan tg = Tagihan.getTagihan(request.getParameter("nis"));
+        Pembayaran[] pb = Pembayaran.getPembayaran(request.getParameter("nis"));
+        Tagihan[] t = Tagihan.getListTagihan(request.getParameter("nis"));
         String hasil;
         String daftar = null;
         System.out.println(tg.isStatus_pembayaran());

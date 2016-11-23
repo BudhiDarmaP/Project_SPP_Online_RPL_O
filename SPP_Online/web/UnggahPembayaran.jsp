@@ -40,7 +40,7 @@
                     <div class="inner">
 
                         <h3>Masukan Data Pembayaran</h3>
-                        <form action="MencatatPembayaran" method="post" enctype="multipart/form-data">
+                        <form action="ControlPembayaran" method="post" enctype="multipart/form-data">
                             <input type="file" name="file" size="50" /><br/>
                             <br />                                                                  
                             <input type="submit" value="Unggah" />

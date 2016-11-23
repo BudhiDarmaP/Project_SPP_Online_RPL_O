@@ -35,7 +35,7 @@
 										<ul>
 											<li><a href="index.jsp">Home</a></li>
 											<li><a href="LihatStatus.jsp">Lihat Status</a></li>
-											<li><a href="Admin.jsp"></a>Admin</li>
+											<li><a href="Admin.jsp">Admin</a></li>
 										</ul>
 									</div>
 								</li>
@@ -49,7 +49,7 @@
 							<div class="inner">
 
                                                             <h2>Kirim Daftar Tagihan Bulan <%= timeStamp %></h2>
-                                                            <form action="Kirim" method="get" enctype="multipart/form-data">									
+                                                            <form action="ControlKirim" method="get" enctype="multipart/form-data">									
 <br />                                                          <input type="submit" value="Kirim Tagihan" />
                                                             </form>											
 							</div>

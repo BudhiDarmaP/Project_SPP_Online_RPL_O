@@ -28,8 +28,8 @@ import org.apache.commons.io.output.*;
  *
  * @author Michael Donny Kusuma
  */
-@WebServlet(name = "MencatatPembayaran", urlPatterns = {"/MencatatPembayaran"})
-public class MencatatPembayaran extends HttpServlet {
+@WebServlet(name = "ControlPembayaran", urlPatterns = {"/ControlPembayaran"})
+public class ControlPembayaran extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -111,16 +111,16 @@ public class MencatatPembayaran extends HttpServlet {
                 p.setJumlahPembayaran(Double.parseDouble(dataSet[2]));
                 p.setNis(dataSet[3].substring(0, 5));
                 p.setBulanTagihan(Integer.parseInt(dataSet[3].substring(6)));
-                p.setJenisPembayaran("SPP");
+                p.setJenisPembayaran("SPP");//poi
                 //Membandingkan nis, jumlah, bulan pembayaran ke tagihan
-                Tagihan [] t = db.getListTagihan(p.getNis());
+                Tagihan [] t = Tagihan.getListTagihan(p.getNis());
                 for (int i = 0; i < t.length; i++) {
                     if (t[i].getNis().equals(p.getNis())
                             && t[i].getJumlah_pembayaran()== p.getJumlahPembayaran() 
                             && t[i].getBulan_tagihan() == p.getBulanTagihan())// bandingkan jumlah pembayaran
                         {
-                        db.simpanPembayaran(p);
-                        db.verifikasiSukses(p.getNis(), p.getBulanTagihan());//update status bayar tagihan menjadi sudah bayar
+                        Pembayaran.simpanPembayaran(p);
+                        t[i].verifikasiSukses(p.getNis(), p.getBulanTagihan());//update status bayar tagihan menjadi sudah bayar
                         
                     }
                 }
