@@ -31,6 +31,8 @@
                                 <ul>
                                     <li><a href="Admin.jsp">Home</a></li>
                                     <li><a href="BuatTagihan.jsp">Buat Tagihan</a></li>
+                                    <li><a href="kirimTagihan.jsp">Kirim Tagihan</a></li>
+                                    <li><a href="UnggahPembayaran.jsp">Unggah Pembayaran</a></li>
                                     <li><a href="LihatStatus.jsp">Lihat Status</a></li>
                                 </ul>
                             </div>

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Pembayaran;
+import model.Siswa;
 import model.Tagihan;
 
 /**
@@ -26,7 +27,27 @@ public class Status extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        try {
+            //Check kelengkapan input
+            if (request.getParameter("nis").equals("")) {
+                throw new Exception("NIS Belum Terisi");
+            }
+        } catch (Exception e) {
+            returnError(request, response, e);
+        }
+
         DatabaseManager db = new DatabaseManager();
+        try {
+            //Check kelengkapan input
+            Siswa[] s = Siswa.getListSiswa();
+            for (int i = 0; i < s.length;i++) {
+                if (!request.getParameter("nis").equals(s[i].getNis())) {
+                    throw new Exception("NIS Tidak Ditemukan");
+                }
+            }
+        } catch (Exception e) {
+            returnError(request, response, e);
+        }
         Tagihan tg = Tagihan.getTagihan(request.getParameter("nis"));
         Pembayaran[] pb = Pembayaran.getPembayaran(request.getParameter("nis"));
         Tagihan[] t = Tagihan.getListTagihan(request.getParameter("nis"));
@@ -35,39 +56,6 @@ public class Status extends HttpServlet {
         System.out.println(tg.isStatus_pembayaran());
         if (tg.isStatus_pembayaran()) {
             hasil = "Sudah bayar";
-//            "<style>
-//table {
-//    font-family: arial, sans-serif;
-//    border-collapse: collapse;
-//    width: 100%;
-//}
-//
-//td, th {
-//    border: 1px solid #dddddd;
-//    text-align: left;
-//    padding: 8px;
-//}
-//
-//tr:nth-child(even) {
-//    background-color: #dddddd;
-//}
-//</style>
-//<table>
-//  <tr>
-//    <th>NIS</th>
-//    <th>BULAN TAGIHAN</th>
-//    <th>WAKTU PEMBAYARAN</th>
-//    <th>STATUS PEMBAYARAN</th>
-//  </tr>
-//  <tr>
-//    <td></td>
-//    <td></td>
-//    <td></td>
-//  </tr>
-//</table>"
-//            for (int i = 0; i < t.length; i++) {
-//            daftar="<table></table>";
-//        }
         } else {
             hasil = "Belum bayar";
         }

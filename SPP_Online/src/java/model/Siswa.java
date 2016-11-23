@@ -44,6 +44,38 @@ public class Siswa {
     public void setEmail(String email) {
         this.email = email;
     }
+    public static Siswa getSiswa(String nis) {
+        Connection conn = null;
+        Statement st = null;
+        ResultSet rs = null;
+        conn = DatabaseManager.getDBConnection();
+        Siswa s = new Siswa();
+        try {
+            st = conn.createStatement();
+            rs = st.executeQuery("SELECT * FROM RPL_SISWA");
+            rs.next();
+            rs = st.executeQuery("SELECT NIS, NAMA, EMAIL FROM RPL_SISWA "
+                    + "WHERE NIS='"+nis+"'");
+            int index = 0;
+            while (rs.next()) {
+                s.setNis(rs.getString(1));
+                s.setNama(rs.getString(2));
+                s.setEmail(rs.getString(3));
+                index++;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            try {
+                rs.close();
+                st.close();
+                conn.close();
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        return s;
+    }
     public static Siswa[] getListSiswa() {
         Connection conn = null;
         Statement st = null;

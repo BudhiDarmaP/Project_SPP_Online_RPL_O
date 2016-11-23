@@ -1,4 +1,5 @@
 
+import model.Siswa;
 import model.Tagihan;
 
 /*
@@ -18,5 +19,7 @@ public class test {
         for(Tagihan temp:test){
             System.out.println(temp.getNis()+","+temp.getId_tagihan()+","+temp.getJumlah_pembayaran());
         }
+        Siswa siswa = Siswa.getSiswa("14001");
+        System.out.println(siswa.getNama());
     }
 }

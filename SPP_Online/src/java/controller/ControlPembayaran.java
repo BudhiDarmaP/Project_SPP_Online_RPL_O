@@ -90,15 +90,13 @@ public class ControlPembayaran extends HttpServlet {
             Exception e = new Exception("no file uploaded");
             returnError(request, response, e);
         }
-        System.out.println("sukses1");
         //Membaca file dari dalam sistem
         String csvFile = filePath + "DataPembayaran_" + timeStamp + ".csv";
         BufferedReader br = null;
         String line = "";
         String cvsSplitBy = ",";
 
-        try {
-            System.out.println("0");
+        try {  
             br = new BufferedReader(new FileReader(csvFile));
             int counter = 1;
             while ((line = br.readLine()) != null) {
@@ -133,8 +131,7 @@ public class ControlPembayaran extends HttpServlet {
             }
             
                         
-            this.tampil(request, response, "Data Terverifikasi");
-            System.out.println("sukses2");
+            this.tampil(request, response, "Data Terverifikasi"); 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
