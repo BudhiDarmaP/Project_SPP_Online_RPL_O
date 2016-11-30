@@ -96,7 +96,7 @@ public class ControlPembayaran extends HttpServlet {
         String line = "";
         String cvsSplitBy = ",";
 
-        try {  
+        try {
             br = new BufferedReader(new FileReader(csvFile));
             int counter = 1;
             while ((line = br.readLine()) != null) {
@@ -111,26 +111,21 @@ public class ControlPembayaran extends HttpServlet {
                 p.setBulanTagihan(Integer.parseInt(dataSet[3].substring(6)));
                 p.setJenisPembayaran("SPP");//poi
                 //Membandingkan nis, jumlah, bulan pembayaran ke tagihan
-                Tagihan [] t = Tagihan.getListTagihan(p.getNis());
+                Tagihan[] t = Tagihan.getListTagihan(p.getNis());
                 for (int i = 0; i < t.length; i++) {
-                System.out.println(t[i].getJumlah_pembayaran());
                     if (t[i].getNis().equals(p.getNis())
-                            && t[i].getJumlah_pembayaran()== p.getJumlahPembayaran() 
+                            && t[i].getJumlah_pembayaran() == p.getJumlahPembayaran()
                             && t[i].getBulan_tagihan() == p.getBulanTagihan())// bandingkan jumlah pembayaran
-                        {
+                    {
+                //Masukan data pembayaran ke database
                         Pembayaran.simpanPembayaran(p);
+                //update status pembayaran tagihan
                         t[i].verifikasiSukses(p.getNis(), p.getBulanTagihan());//update status bayar tagihan menjadi sudah bayar
-                        
                     }
                 }
                 counter++;
-                //Masukan data pembayaran ke database
-                
-                //update status pembayaran tagihan
-
-                
-            }           
-            this.tampil(request, response, "Data Terverifikasi"); 
+            }
+            this.tampil(request, response, "Data Terverifikasi");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

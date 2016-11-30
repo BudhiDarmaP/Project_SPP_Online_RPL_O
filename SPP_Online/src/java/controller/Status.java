@@ -27,9 +27,10 @@ public class Status extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String nis = request.getParameter("nis");
         try {
             //Check kelengkapan input
-            if (request.getParameter("nis").equals("")) {
+            if (nis.equals("")) {
                 throw new Exception("NIS Belum Terisi");
             }
         } catch (Exception e) {
@@ -40,26 +41,34 @@ public class Status extends HttpServlet {
         try {
             //Check kelengkapan input
             Siswa[] s = Siswa.getListSiswa();
-            for (int i = 0; i < s.length;i++) {
-                if (!request.getParameter("nis").equals(s[i].getNis())) {
+            for (int i = 0; i < s.length; i++) {
+                if (!nis.equals(s[i].getNis())) {
                     throw new Exception("NIS Tidak Ditemukan");
+                } else {
+                    Tagihan tg = Tagihan.getTagihan(nis);
+                    Pembayaran[] pb = Pembayaran.getPembayaran(nis);
+                    Tagihan[] t = Tagihan.getListTagihan(nis);
+                    String hasil;
+                    String daftar = null;
+                    if (tg.isStatus_pembayaran()) {
+                        hasil = "<table><tr><th>Bulan"
+                                + "<th>Jumlah Tagihan</tr>"
+                                + "<tr><td>"+tg.getBulan_tagihan()+"<td>"
+                                +tg.getJumlah_pembayaran()+"</tr></table>"
+                                +"Sudah bayar";
+                    } else {
+                        hasil = "<table><tr><th>Bulan"
+                                + "<th>Jumlah Tagihan</tr>"
+                                + "<tr><td>"+tg.getBulan_tagihan()+"<td>"
+                                +tg.getJumlah_pembayaran()+"</tr></table>"
+                                + "Belum bayar";
+                    }
+                    this.tampil(request, response, hasil);
                 }
             }
         } catch (Exception e) {
             returnError(request, response, e);
         }
-        Tagihan tg = Tagihan.getTagihan(request.getParameter("nis"));
-        Pembayaran[] pb = Pembayaran.getPembayaran(request.getParameter("nis"));
-        Tagihan[] t = Tagihan.getListTagihan(request.getParameter("nis"));
-        String hasil;
-        String daftar = null;
-        System.out.println(tg.isStatus_pembayaran());
-        if (tg.isStatus_pembayaran()) {
-            hasil = "Sudah bayar";
-        } else {
-            hasil = "Belum bayar";
-        }
-        this.tampil(request, response, hasil);
     }
 
     public void daftar(String nis) {
