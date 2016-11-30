@@ -79,17 +79,13 @@ public class Tagihan {
         PreparedStatement ps = null;
         conn = DatabaseManager.getDBConnection();
         try {
-            int status = 0;
-            if (t.isStatus_pembayaran()) {
-                status = 1;
-            }
-            ps = conn.prepareCall("INSERT INTO RPL_TAGIHAN VALUES(?,?,?,TO_DATE(?, 'DD-MM-YYYY'),?,?)");
+            
+            ps = conn.prepareCall("INSERT INTO RPL_TAGIHAN VALUES(?,?,?,?,?)");
             ps.setString(1, t.getId_tagihan());
             ps.setString(2, t.getNis());
             ps.setInt(3, t.getBulan_tagihan());
-            ps.setString(4, t.getPembayaran_terakhir());
-            ps.setInt(5, status);
-            ps.setDouble(6, t.getJumlah_pembayaran());
+            ps.setBoolean(4, t.status_pembayaran);
+            ps.setDouble(5, t.getJumlah_pembayaran());
 
             ps.executeUpdate();
             conn.commit();
@@ -128,9 +124,8 @@ public class Tagihan {
                 tg[index].setId_tagihan(rs.getString(1));
                 tg[index].setNis(rs.getString(2));
                 tg[index].setBulan_tagihan(rs.getInt(3));
-                tg[index].setPembayaran_terakhir(rs.getString(4));
-                tg[index].setStatus_pembayaran(rs.getBoolean(5));
-                tg[index].setJumlah_pembayaran(rs.getDouble(6));
+                tg[index].setStatus_pembayaran(rs.getBoolean(4));
+                tg[index].setJumlah_pembayaran(rs.getDouble(5));
                 index++;
             }
         } catch (SQLException ex) {
@@ -161,9 +156,8 @@ public class Tagihan {
             tg.setId_tagihan(rs.getString(1));
             tg.setNis(rs.getString(2));
             tg.setBulan_tagihan(rs.getInt(3));
-            tg.setPembayaran_terakhir(rs.getString(4));
-            tg.setStatus_pembayaran(rs.getBoolean(5));
-            tg.setJumlah_pembayaran(rs.getDouble(6));
+            tg.setStatus_pembayaran(rs.getBoolean(4));
+            tg.setJumlah_pembayaran(rs.getDouble(5));
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } finally {
@@ -187,7 +181,7 @@ public class Tagihan {
         conn = DatabaseManager.getDBConnection();
         try {
             ps = conn.prepareCall("UPDATE RPL_TAGIHAN SET STATUS_PEMBAYARAN=? WHERE NIS=? AND BULAN_TAGIHAN=?");
-            ps.setInt(1, 1);
+            ps.setBoolean(1, true);
             ps.setString(2, nis);
             ps.setInt(3, bulan_tagihan);
             ps.executeUpdate();

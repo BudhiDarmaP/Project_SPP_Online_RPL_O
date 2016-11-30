@@ -113,6 +113,7 @@ public class ControlPembayaran extends HttpServlet {
                 //Membandingkan nis, jumlah, bulan pembayaran ke tagihan
                 Tagihan [] t = Tagihan.getListTagihan(p.getNis());
                 for (int i = 0; i < t.length; i++) {
+                System.out.println(t[i].getJumlah_pembayaran());
                     if (t[i].getNis().equals(p.getNis())
                             && t[i].getJumlah_pembayaran()== p.getJumlahPembayaran() 
                             && t[i].getBulan_tagihan() == p.getBulanTagihan())// bandingkan jumlah pembayaran
@@ -128,9 +129,7 @@ public class ControlPembayaran extends HttpServlet {
                 //update status pembayaran tagihan
 
                 
-            }
-            
-                        
+            }           
             this.tampil(request, response, "Data Terverifikasi"); 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

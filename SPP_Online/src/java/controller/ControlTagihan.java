@@ -56,15 +56,16 @@ public class ControlTagihan extends HttpServlet {
             this.returnError(request, response, ex);
         }
         Siswa[] s = Siswa.getListSiswa();
-
+        System.out.println("Jumlah siswa "+s.length);
         //Membuat daftar tagihan
         Tagihan[] t = new Tagihan[s.length];
+        System.out.println("Bulan = "+request.getParameter("bulan"));
+        System.out.println("Tagihan = "+Double.parseDouble(request.getParameter("tagihan")));
         for (int i = 0; i < s.length; i++) {
             t[i] = new Tagihan();
-            t[i].setId_tagihan("1" + timeStamp + s[i].getNis());
+            t[i].setId_tagihan("1" + request.getParameter("bulan") + s[i].getNis());
             t[i].setNis(s[i].getNis());
             t[i].setBulan_tagihan(Integer.parseInt(request.getParameter("bulan")));
-//            t[i].setPembayaran_terakhir("20-"+timeStamp.substring(2)+"-20"+timeStamp.substring(0,2));
             t[i].setStatus_pembayaran(false);
             t[i].setJumlah_pembayaran(Double.parseDouble(request.getParameter("tagihan")));
             Tagihan.simpanTagihan(t[i]);

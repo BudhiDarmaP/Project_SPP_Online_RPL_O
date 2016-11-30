@@ -40,18 +40,15 @@ public class ControlKirim extends HttpServlet {
         String timeStamp = new SimpleDateFormat("YYMM").format(Calendar.getInstance().getTime());
 
         /* TODO output your page here. You may use following sample code. */
-        Siswa[] s = Siswa.getListSiswa();
+        //Siswa[] s = Siswa.getListSiswa();
         String email[] = Siswa.getListEmail();
-        Tagihan tgh = new Tagihan();
+        //Tagihan tgh = new Tagihan();
         String pesan = null;
 
-        for (int i = 0; i < s.length; i++) {
-            email[i] = s[i].getEmail();
-            System.out.println(email[i]);
+        for (int i = 0; i < email.length; i++) {
             String to = email[i];
-            String subject = "INFORMASI PEMBERITAHUAN TAGIHAN PEMBAYARAN SPP";
-            String msg = "Status pembayaran SPP anda bulan " + timeStamp.substring(2) + " ini masih belum terbayar\n"
-                    + " Total tagihan anda bulan ini adalah Rp." + tgh.getJumlah_pembayaran();
+            String subject = "PERINGATAN PEMBAYARAN SPP";
+            String msg = "REMINDER!!!\nSPP anda bulan "+timeStamp.substring(2)+" belum terbayar.\nTerima Kasih\nSMA Sanata Dharma";
             final String from = "semarmesam2020@gmail.com";
             final String password = "Ceksatu23";
 
@@ -88,7 +85,7 @@ public class ControlKirim extends HttpServlet {
 
                 transport.connect();
                 Transport.send(message);
-                pesan = "Pesan berhasil dikirim ke " + String.valueOf(s.length) +" orang";
+                pesan = "Pesan berhasil dikirim ke " + String.valueOf(email.length) +" orang";
                 transport.close();
             } catch (Exception e) {
             }
@@ -102,8 +99,8 @@ public class ControlKirim extends HttpServlet {
 //            out.println("<h1>Sukses</h1>");
 //            out.println("</body>");
 //            out.println("</html>");
-                this.tampil(request, response, pesan);
         }
+                this.tampil(request, response, pesan);
 }
 public void returnError(HttpServletRequest request, HttpServletResponse response, Exception e) throws ServletException, IOException {
         RequestDispatcher dispatcher;
