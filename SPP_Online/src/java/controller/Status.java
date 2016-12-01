@@ -33,10 +33,14 @@ public class Status extends HttpServlet {
             if (nis.equals("")) {
                 throw new Exception("NIS Belum Terisi");
             }
+            try {
+                int formatNIS = Integer.parseInt(nis);
+            } catch (Exception ej) {
+                throw new Exception("Format NIS Salah");
+            }
         } catch (Exception e) {
             returnError(request, response, e);
         }
-
         DatabaseManager db = new DatabaseManager();
         try {
             //Check kelengkapan input
@@ -57,7 +61,7 @@ public class Status extends HttpServlet {
                         hasil = "Belum bayar";
                     }
                     this.tampil(request, response, daftar + hasil);
-                } else if (!nis.equals(s[i].getNis()) && s.length-1 == i) {
+                } else if (!nis.equals(s[i].getNis()) && s.length - 1 == i) {
                     throw new Exception("NIS Tidak Ditemukan");
                 }
             }

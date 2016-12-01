@@ -75,12 +75,17 @@ public class ControlPembayaran extends HttpServlet {
                 while (i.hasNext()) {
                     FileItem fi = (FileItem) i.next();
                     if (!fi.isFormField()) {
+                        if (fi.getName().contains(".csv")) {
                         String fieldName = fi.getFieldName();
                         String fileName = fi.getName();
                         boolean isInMemory = fi.isInMemory();
                         long sizeInBytes = fi.getSize();
                         file = new File(filePath + "DataPembayaran_" + timeStamp + ".csv");
                         fi.write(file);
+                        }
+                        else{
+                            throw new Exception("Format File Salah");
+                        }
                     }
                 }
             } catch (Exception ex) {
