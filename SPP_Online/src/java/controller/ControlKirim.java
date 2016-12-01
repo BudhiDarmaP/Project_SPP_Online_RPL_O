@@ -89,16 +89,6 @@ public class ControlKirim extends HttpServlet {
                 transport.close();
             } catch (Exception e) {
             }
-//                
-//                out.println("<!DOCTYPE html>");
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>Servlet ControlKirim</title>");            
-//            out.println("</head>");
-//            out.println("<body>");
-//            out.println("<h1>Sukses</h1>");
-//            out.println("</body>");
-//            out.println("</html>");
         }
                 this.tampil(request, response, pesan);
 }
