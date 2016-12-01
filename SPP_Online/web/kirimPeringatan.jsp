@@ -48,9 +48,9 @@
 						<section class="wrapper style5">
 							<div class="inner">
 
-                                                            <h2>Kirim Daftar Tagihan Bulan <%= timeStamp %></h2>
+                                                            <h2>Kirim Peringatan Tagihan Bulan <%= timeStamp %></h2>
                                                             <form action="ControlKirim" method="get" enctype="multipart/form-data">									
-<br />                                                          <input type="submit" value="Kirim Tagihan" />
+<br />                                                          <input type="submit" value="Kirim Peringatan" />
                                                             </form>											
 							</div>
 						</section>
