@@ -15,16 +15,13 @@ import model.Tagihan;
 public class test {
 
     public static void main(String[] args) {
-        }
-//    //Test Siswa
-//    Siswa[] s =Siswa.getListSiswa();
-//    String email[] = Siswa.getListEmail();
-//    for (int i = 0; i < s.length; i++) {
-//            email[i] = s[i].getEmail();
-//            System.out.println(email[i]);
-//        }
-//    }
-//}
+        
+    //Test Siswa
+    Siswa[] s =Siswa.getListSiswa();
+    for (int i = 0; i < s.length; i++) {
+            System.out.println(s[i].getNis()+" "+s[i].getNama()+" "+s[i].getEmail());
+    }
+}
 
 //Test Pembayaran
 //        Siswa[] s = Siswa.getListSiswa();

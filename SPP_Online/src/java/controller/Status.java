@@ -42,28 +42,23 @@ public class Status extends HttpServlet {
             //Check kelengkapan input
             Siswa[] s = Siswa.getListSiswa();
             for (int i = 0; i < s.length; i++) {
-                if (!nis.equals(s[i].getNis())) {
-                    throw new Exception("NIS Tidak Ditemukan");
-                } else {
+                if (nis.equals(s[i].getNis()) && s.length > i) {
                     Tagihan tg = Tagihan.getTagihan(nis);
                     Pembayaran[] pb = Pembayaran.getPembayaran(nis);
                     Tagihan[] t = Tagihan.getListTagihan(nis);
                     String hasil;
-                    String daftar = null;
+                    String daftar = "<table><tr><th>Bulan"
+                            + "<th>Jumlah Tagihan</tr>"
+                            + "<tr><td>" + tg.getBulan_tagihan() + "<td>"
+                            + tg.getJumlah_pembayaran() + "</tr></table>";
                     if (tg.isStatus_pembayaran()) {
-                        hasil = "<table><tr><th>Bulan"
-                                + "<th>Jumlah Tagihan</tr>"
-                                + "<tr><td>"+tg.getBulan_tagihan()+"<td>"
-                                +tg.getJumlah_pembayaran()+"</tr></table>"
-                                +"Sudah bayar";
+                        hasil = "Sudah bayar";
                     } else {
-                        hasil = "<table><tr><th>Bulan"
-                                + "<th>Jumlah Tagihan</tr>"
-                                + "<tr><td>"+tg.getBulan_tagihan()+"<td>"
-                                +tg.getJumlah_pembayaran()+"</tr></table>"
-                                + "Belum bayar";
+                        hasil = "Belum bayar";
                     }
-                    this.tampil(request, response, hasil);
+                    this.tampil(request, response, daftar + hasil);
+                } else if (!nis.equals(s[i].getNis()) && s.length-1 == i) {
+                    throw new Exception("NIS Tidak Ditemukan");
                 }
             }
         } catch (Exception e) {
