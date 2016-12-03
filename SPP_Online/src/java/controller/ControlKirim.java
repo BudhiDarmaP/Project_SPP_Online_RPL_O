@@ -86,7 +86,7 @@ public class ControlKirim extends HttpServlet {
 
                 transport.connect();
                 Transport.send(message);
-                pesan = "Pesan berhasil dikirim ke " + String.valueOf(email.length+1) +" orang";
+                pesan = "Pesan berhasil dikirim ke " + String.valueOf(email.length) +" orang";
                 transport.close();
             } catch (Exception e) {
             }
