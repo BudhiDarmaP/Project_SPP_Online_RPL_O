@@ -43,7 +43,8 @@ public class ControlKirim extends HttpServlet {
         //Siswa[] s = Siswa.getListSiswa();
         String email[] = Siswa.getListEmail();
         //Tagihan tgh = new Tagihan();
-        String pesan = null;
+        
+        String pesan = "Tidak ada peringatan yang dikirim";
 
         for (int i = 0; i < email.length; i++) {
             String to = email[i];
