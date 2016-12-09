@@ -47,6 +47,8 @@ public class Status extends HttpServlet {
             Siswa[] s = Siswa.getListSiswa();
             for (int i = 0; i < s.length; i++) {
                 if (nis.equals(s[i].getNis()) && s.length > i) {
+//                    String Nama = "Nama\t:\t"+s[i].getNama();
+//                    String NIS = "<p>NIS\t:\t"+s[i].getNis()+"</p>";
                     Tagihan tg = Tagihan.getTagihan(nis);
                     Pembayaran[] pb = Pembayaran.getPembayaran(nis);
                     Tagihan[] t = Tagihan.getListTagihan(nis);
@@ -60,7 +62,7 @@ public class Status extends HttpServlet {
                     } else {
                         hasil = "Belum bayar";
                     }
-                    this.tampil(request, response, daftar + hasil);
+                    this.tampil(request, response, /*NIS + Nama +*/daftar + hasil);
                 } else if (!nis.equals(s[i].getNis()) && s.length - 1 == i) {
                     throw new Exception("NIS Tidak Ditemukan");
                 }
