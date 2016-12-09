@@ -21,6 +21,7 @@ import model.Tagihan;
  *
  * @author budhidarmap
  */
+
 @WebServlet(name = "Status", urlPatterns = {"/Status"})
 public class Status extends HttpServlet {
 
@@ -44,9 +45,13 @@ public class Status extends HttpServlet {
         DatabaseManager db = new DatabaseManager();
         try {
             //Check kelengkapan input
+            
+            //Cek siswa ada di database
             Siswa[] s = Siswa.getListSiswa();
             for (int i = 0; i < s.length; i++) {
                 if (nis.equals(s[i].getNis()) && s.length > i) {
+                    
+                    
 //                    String Nama = "Nama\t:\t"+s[i].getNama();
 //                    String NIS = "<p>NIS\t:\t"+s[i].getNis()+"</p>";
                     Tagihan tg = Tagihan.getTagihan(nis);

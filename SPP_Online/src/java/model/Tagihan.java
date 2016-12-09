@@ -141,6 +141,44 @@ public class Tagihan {
         }
         return tg;
     }
+    
+    public static Tagihan[] getListStatusTagihan(String nis) {
+        Connection conn = null;
+        Statement st = null;
+        ResultSet rs = null;
+        conn = DatabaseManager.getDBConnection();
+        Tagihan tg[] = null;
+        try {
+            st = conn.createStatement();
+            rs = st.executeQuery("SELECT COUNT (*) "
+                    + "TOTAL FROM RPL_TAGIHAN WHERE NIS = '" + nis + "'");
+            rs.next();
+            tg = new Tagihan[rs.getInt(1)];
+            rs = st.executeQuery("SELECT *"
+                    + "FROM RPL_TAGIHAN WHERE NIS = '" + nis + "'");
+            int index = 0;
+            while (rs.next()) {
+                tg[index] = new Tagihan();
+                tg[index].setId_tagihan(rs.getString(1));
+                tg[index].setNis(rs.getString(2));
+                tg[index].setBulan_tagihan(rs.getInt(3));
+                tg[index].setStatus_pembayaran(rs.getBoolean(4));
+                tg[index].setJumlah_pembayaran(rs.getDouble(5));
+                index++;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            try {
+                rs.close();
+                st.close();
+                conn.close();
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        return tg;
+    }
 
     public static Tagihan getTagihan(String nis) {
         Connection conn = null;
