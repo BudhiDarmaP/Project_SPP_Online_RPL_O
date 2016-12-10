@@ -22,14 +22,14 @@
 
             <!-- Header -->
             <header id="header">
-                <h1><a href="index.jsp">Sistem Pembayaran Uang Sekolah</a></h1>
+                <h1><a href="HalamanUtama.jsp">Sistem Pembayaran Uang Sekolah</a></h1>
                 <nav id="nav">
                     <ul>
                         <li class="special">
                             <a href="#menu" class="menuToggle"><span>Menu</span></a>
                             <div id="menu">
                                 <ul>
-                                    <li><a href="index.jsp">Home</a></li>
+                                    <li><a href="HalamanUtama.jsp">Home</a></li>
                                     <li><a href="LihatStatus.jsp">Lihat Status</a></li>
                                     <li><a href="Admin.jsp">Admin</a></li>
                                 </ul>
