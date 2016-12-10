@@ -151,11 +151,11 @@ public class Tagihan {
         try {
             st = conn.createStatement();
             rs = st.executeQuery("SELECT COUNT (*) "
-                    + "TOTAL FROM RPL_TAGIHAN WHERE NIS = '" + nis + "'");
+                    + "TOTAL FROM RPL_TAGIHAN WHERE NIS = '" + nis + "' ORDER BY BULAN_TAGIHAN ASC");
             rs.next();
             tg = new Tagihan[rs.getInt(1)];
             rs = st.executeQuery("SELECT *"
-                    + "FROM RPL_TAGIHAN WHERE NIS = '" + nis + "'");
+                    + "FROM RPL_TAGIHAN WHERE NIS = '" + nis + "' ORDER BY BULAN_TAGIHAN ASC");
             int index = 0;
             while (rs.next()) {
                 tg[index] = new Tagihan();

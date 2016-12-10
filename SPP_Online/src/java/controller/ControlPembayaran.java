@@ -114,7 +114,6 @@ public class ControlPembayaran extends HttpServlet {
                 p.setJumlahPembayaran(Double.parseDouble(dataSet[2]));
                 p.setNis(dataSet[3].substring(0, 5));
                 p.setBulanTagihan(Integer.parseInt(dataSet[3].substring(6)));
-                p.setJenisPembayaran("SPP");//poi
                 //Membandingkan nis, jumlah, bulan pembayaran ke tagihan
                 Tagihan[] t = Tagihan.getListTagihan(p.getNis());
                 for (int i = 0; i < t.length; i++) {

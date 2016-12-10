@@ -18,7 +18,6 @@ public class Pembayaran {
     private double jumlahPembayaran;
     private String beritaAcara;
     private String nis;
-    private String jenisPembayaran;
     private String status;
     private int bulanTagihan;
 
@@ -78,14 +77,6 @@ public class Pembayaran {
         this.nis = nis;
     }
 
-    public String getJenisPembayaran() {
-        return jenisPembayaran;
-    }
-
-    public void setJenisPembayaran(String jenisPembayaran) {
-        this.jenisPembayaran = jenisPembayaran;
-    }
-
     public String getID() {
         return ID;
     }
@@ -142,7 +133,7 @@ public class Pembayaran {
                     + "'" + tanggal + "' , 'DD-MM-YY')");
             rs.next();
             pb = new Pembayaran[rs.getInt(1)];
-            rs = st.executeQuery("SELECT ID_PEMBAYARAN, NIS, NO_REKENING, JUMLAH_PEMBAYARAN, JENIS_PEMBAYARAN, TO_CHAR(TANGGAL_PEMBAYARAN, 'DD-MM-YYYY') "
+            rs = st.executeQuery("SELECT ID_PEMBAYARAN, NIS, NO_REKENING, JUMLAH_PEMBAYARAN, TO_CHAR(TANGGAL_PEMBAYARAN, 'DD-MM-YYYY') "
                     + "FROM RPL_PEMBAYARAN WHERE TANGGAL_PEMBAYARAN = TO_DATE("
                     + "'" + tanggal + "' , 'DD-MM-YY')");
             int index = 0;
@@ -152,8 +143,7 @@ public class Pembayaran {
                 pb[index].setNis(rs.getString(2));
                 pb[index].setNoRekening(rs.getString(3));
                 pb[index].setJumlahPembayaran(rs.getInt(4));
-                pb[index].setJenisPembayaran(rs.getString(5));
-                pb[index].setWaktuPembayaran(rs.getString(6));
+                pb[index].setWaktuPembayaran(rs.getString(5));
                 index++;
             }
         } catch (SQLException ex) {
@@ -175,13 +165,12 @@ public class Pembayaran {
         PreparedStatement ps = null;
         conn = DatabaseManager.getDBConnection();
         try {
-            ps = conn.prepareCall("INSERT INTO RPL_PEMBAYARAN VALUES(?,?,?,?,?,TO_DATE(?, 'DD-MM-YYYY'))");
+            ps = conn.prepareCall("INSERT INTO RPL_PEMBAYARAN VALUES(?,?,?,?,TO_DATE(?, 'DD-MM-YYYY'))");
             ps.setString(1, p.getID());
             ps.setString(2, p.getNis());
             ps.setString(3, p.getNoRekening());
             ps.setDouble(4, p.getJumlahPembayaran());
-            ps.setString(5, p.getJenisPembayaran());
-            ps.setString(6, p.getWaktuPembayaran());
+            ps.setString(5, p.getWaktuPembayaran());
             ps.executeUpdate();
             conn.commit();
             text = "Data sudah ditambahkan";

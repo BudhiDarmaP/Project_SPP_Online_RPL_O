@@ -1,8 +1,34 @@
+<%@page import="model.Siswa"%>
 <%@page import="model.Tagihan"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     String nis = request.getParameter("nis");
+    try {
+            //Check kelengkapan input
+            if (nis.equals("")) {
+                throw new Exception("NIS Belum Terisi");
+            }
+            try {
+                int formatNIS = Integer.parseInt(nis);
+            } catch (Exception ej) {
+                throw new Exception("Format NIS Salah");
+            }
+        } catch (Exception e) {
+            RequestDispatcher dispatcher;
+            request.setAttribute("error", e.getMessage());
+            dispatcher = request.getRequestDispatcher("error.jsp");
+            dispatcher.forward(request, response);
+        }
+    
     Tagihan[] tg = Tagihan.getListStatusTagihan(nis);
+    
+    Siswa s = Siswa.getSiswa(nis);
+    if (s.getNis()==null) {
+            RequestDispatcher dispatcher;
+            request.setAttribute("error", "Siswa tidak ditemukan");
+            dispatcher = request.getRequestDispatcher("error.jsp");
+            dispatcher.forward(request, response);
+        }
 %>
 <!DOCTYPE HTML>
 <!--
@@ -49,8 +75,8 @@
 					<article id="main">
 						<section class="wrapper style5">
 							<div class="inner">
-
-                                                            <h2>Informasi Pembayaran:</h2>
+                                                            <h2>Selamat datang, <%= s.getNama() %></h2>
+                                                            <h3>Informasi Pembayaran:</h3>
                                                             <table>
                                                                 <tr>
                                                                     <td>
