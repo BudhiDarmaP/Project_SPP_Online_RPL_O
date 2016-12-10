@@ -61,7 +61,7 @@
 									<a href="#menu" class="menuToggle"><span>Menu</span></a>
 									<div id="menu">
 										<ul>
-											<li><a href="index.jsp">Home</a></li>
+											<li><a href="HalamanUtama.jsp">Home</a></li>
 											<li><a href="LihatStatus.jsp">Lihat Status</a></li>
 											<li><a href="Admin.jsp">Admin</a></li>
 										</ul>
