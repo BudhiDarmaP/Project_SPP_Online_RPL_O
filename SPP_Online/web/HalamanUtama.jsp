@@ -40,7 +40,7 @@
 
             <!-- Header -->
             <header id="header" class="alt">
-                <h1><a href="index.jsp">Sistem Pembayaran Uang Sekolah</a></h1>
+                <h1><a href="HalamanUtama.jsp">Sistem Pembayaran Uang Sekolah</a></h1>
                 <nav id="nav">
                     <ul>
                         <li class="special">
