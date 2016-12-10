@@ -17,10 +17,14 @@ public class test {
     public static void main(String[] args) {
         
     //Test Siswa
-    Siswa[] s =Siswa.getListSiswa();
-    for (int i = 0; i < s.length; i++) {
-            System.out.println(s[i].getNis()+" "+s[i].getNama()+" "+s[i].getEmail());
-    }
+//    String [] email=Siswa.getListEmail();
+//        for (int i = 0; i < email.length; i++) {
+//            System.out.println(email[i]);
+//    }
+//    Siswa[] s =Siswa.getListSiswa();
+//    for (int i = 0; i < s.length; i++) {
+//            System.out.println(s[i].getNis()+" "+s[i].getNama()+" "+s[i].getEmail());
+//    }
 }
 
 //Test Pembayaran
