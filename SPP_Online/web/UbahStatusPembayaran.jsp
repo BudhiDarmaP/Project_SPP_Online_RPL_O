@@ -21,8 +21,7 @@
                             <a href="#menu" class="menuToggle"><span>Menu</span></a>
                             <div id="menu">
                                 <ul>
-                                    <li><a href="Admin.jsp">Home</a></li>
-                                    <li><a href="BuatTagihan.jsp">Buat Tagihan</a></li>
+                                    <li><a href="Admin.jsp">Admin</a></li>
                                     <li><a href="LihatStatus.jsp">Lihat Status</a></li>
                                 </ul>
                             </div>
@@ -34,7 +33,7 @@
             <!-- Main -->
             <article id="main">
                 <header>
-                    <h2>Admin</h2>
+                    <h2>Ubah Status Pembayaran</h2>
                 </header>
                 <section class="wrapper style5">
                     <div class="inner">
