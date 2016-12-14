@@ -58,8 +58,8 @@
                                 <a href="kirimPeringatan.jsp" class="button fit">Kirim Peringatan</a>
                             </li>
                             <li class="icon fa-upload">
-                                <h3>Unggah Pembayaran</h3>
-                                <a href="UbahStatusPembayaran.jsp" class="button fit">Unggah Pembayaran</a>
+                                <h3>Ubah Status Pembayaran</h3>
+                                <a href="UbahStatusPembayaran.jsp" class="button fit">Ubah Status Pembayaran</a>
                             </li>
                         </ul>
                     </div>
