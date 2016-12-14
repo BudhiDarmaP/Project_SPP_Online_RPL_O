@@ -32,7 +32,7 @@
                                     <li><a href="Admin.jsp">Home</a></li>
                                     <li><a href="BuatTagihan.jsp">Buat Tagihan</a></li>
                                     <li><a href="kirimPeringatan.jsp">Kirim Peringatan</a></li>
-                                    <li><a href="UbahStatusPembayaran.jsp">Unggah Pembayaran</a></li>
+                                    <li><a href="UbahStatusPembayaran.jsp">Ubah Status Pembayaran</a></li>
                                     <li><a href="LihatStatus.jsp">Lihat Status</a></li>
                                 </ul>
                             </div>
@@ -58,8 +58,8 @@
                                 <a href="kirimPeringatan.jsp" class="button fit">Kirim Peringatan</a>
                             </li>
                             <li class="icon fa-upload">
-                                <h3>Unggah Pembayaran</h3>
-                                <a href="UbahStatusPembayaran.jsp" class="button fit">Unggah Pembayaran</a>
+                                <h3>Ubah Status Pembayaran</h3>
+                                <a href="UbahStatusPembayaran.jsp" class="button fit">Ubah Status Pembayaran</a>
                             </li>
                         </ul>
                     </div>
